@@ -5,3 +5,7 @@ authors = ["Ben Marsh <ben.marsh@mintlayer.org>"]
 edition = "2018"
 
 [dependencies]
+num-traits = "0.2.15"
+rand = "0.8.5"
+secrecy = "0.8.0"
+thiserror = "1.0.37"
