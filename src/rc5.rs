@@ -59,7 +59,7 @@ where
 
     /// Encrypts plain text.
     pub fn encode(&self, plaintext: &[u8]) -> Vec<u8> {
-        let blocks = bytes_to_blocks::<W>(plaintext)
+        let blocks = bytes_to_blocks(plaintext)
             .iter()
             .map(|b| b.encode(&self))
             .collect::<Vec<_>>();
@@ -68,7 +68,7 @@ where
 
     /// Decrypts cipher text.
     pub fn decode(&self, ciphertext: &[u8]) -> Vec<u8> {
-        let blocks = bytes_to_blocks::<W>(ciphertext)
+        let blocks = bytes_to_blocks(ciphertext)
             .iter()
             .map(|b| b.decode(&self))
             .collect::<Vec<_>>();

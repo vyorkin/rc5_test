@@ -4,14 +4,17 @@ use crate::{ExpandedKeyTable, Word, RC5};
 pub struct Block<W>(W, W);
 
 impl<W: Word> Block<W> {
+    /// Creates a new block from words `a` and `b`.
     pub fn new(a: W, b: W) -> Self {
         Self(a, b)
     }
 
+    /// Crates a new block from a given slice of words.
     pub fn from_words(ws: &[W]) -> Self {
         Self::new(ws[0], ws[1])
     }
 
+    /// Converts a block into a vector of words.
     pub fn to_words(&self) -> Vec<W> {
         vec![self.0, self.1]
     }
