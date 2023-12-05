@@ -61,7 +61,7 @@ where
     pub fn encode(&self, plaintext: &[u8]) -> Vec<u8> {
         let blocks = bytes_to_blocks(plaintext)
             .iter()
-            .map(|b| b.encode(&self))
+            .map(|b| b.encode(self))
             .collect::<Vec<_>>();
         blocks_to_bytes(&blocks)
     }
@@ -70,7 +70,7 @@ where
     pub fn decode(&self, ciphertext: &[u8]) -> Vec<u8> {
         let blocks = bytes_to_blocks(ciphertext)
             .iter()
-            .map(|b| b.decode(&self))
+            .map(|b| b.decode(self))
             .collect::<Vec<_>>();
         blocks_to_bytes(&blocks)
     }
@@ -96,11 +96,11 @@ where
         .collect()
 }
 
-fn blocks_to_words<W: Word>(blocks: &Vec<Block<W>>) -> Vec<W> {
+fn blocks_to_words<W: Word>(blocks: &[Block<W>]) -> Vec<W> {
     blocks.iter().flat_map(Block::to_words).collect()
 }
 
-fn blocks_to_bytes<W: Word>(blocks: &Vec<Block<W>>) -> Vec<u8>
+fn blocks_to_bytes<W: Word>(blocks: &[Block<W>]) -> Vec<u8>
 where
     <<W as ToLeBytes>::T as TryInto<Vec<u8>>>::Error: Debug,
 {
